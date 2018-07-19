@@ -122,18 +122,53 @@ const user = {
 // setInterval(tick,1000)
 
 class Clock extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {date:new Date()};
+    }
+    componentDidMount(){
+        console.log('挂载开始')
+        this.timerID = setInterval(()=>{
+            this.tick();
+        },1000)
+    }
+    componentWillUnmounte(){
+        console.log('结束')
+        clearInterval(this.timerID);
+    }
+    tick(){
+        this.setState({
+            date:new Date()
+        })
+    }
     render(){
         return(
             <div>
-                  <h1>{this.props.date.toLocaleTimeString()}</h1>
+                  <h1>{this.state.date.toLocaleTimeString()}</h1>
             </div>
         )
     }
 }
-ReactDOM.render(
-    <Clock date={new Date()} />,
+
+function App() {
+    return (
+      <div>
+        <Clock />
+        <Clock />
+        <Clock />
+      </div>
+    );
+  }
+  
+  ReactDOM.render(
+    <App />,
     document.getElementById('root')
-)
+  );
+
+// ReactDOM.render(
+//     <Clock />,
+//     document.getElementById('root')
+// )
 
 
 registerServiceWorker();
