@@ -121,54 +121,204 @@ const user = {
 
 // setInterval(tick,1000)
 
-class Clock extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {date:new Date()};
-    }
-    componentDidMount(){
-        console.log('挂载开始')
-        this.timerID = setInterval(()=>{
-            this.tick();
-        },1000)
-    }
-    componentWillUnmounte(){
-        console.log('结束')
-        clearInterval(this.timerID);
-    }
-    tick(){
-        this.setState({
-            date:new Date()
-        })
-    }
-    render(){
-        return(
-            <div>
-                  <h1>{this.state.date.toLocaleTimeString()}</h1>
-            </div>
-        )
-    }
-}
+// class Clock extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state = {date:new Date()};
+//     }
+//     componentDidMount(){
+//         console.log('挂载开始')
+//         this.timerID = setInterval(()=>{
+//             this.tick();
+//         },1000)
+//     }
+//     componentWillUnmounte(){
+//         console.log('结束')
+//         clearInterval(this.timerID);
+//     }
+//     tick(){
+//         this.setState({
+//             date:new Date()
+//         })
+//     }
+//     render(){
+//         return(
+//             <div>
+//                   <h1>{this.state.date.toLocaleTimeString()}</h1>
+//             </div>
+//         )
+//     }
+// }
 
-function App() {
-    return (
-      <div>
-        <Clock />
-        <Clock />
-        <Clock />
-      </div>
-    );
-  }
+// function App() {
+//     return (
+//       <div>
+//         <Clock />
+//         <Clock />
+//         <Clock />
+//       </div>
+//     );
+//   }
   
-  ReactDOM.render(
-    <App />,
-    document.getElementById('root')
-  );
+// ReactDOM.render(
+// <App />,
+// document.getElementById('root')
+// );
 
 // ReactDOM.render(
 //     <Clock />,
 //     document.getElementById('root')
 // )
+
+// function UserGreeting(props) {
+//     return <h1>Welcome back!</h1>;
+// }
+  
+// function GuestGreeting(props) {
+//     return <h1>Please sign up.</h1>;
+// }
+
+// function Greeting(props){
+//     const isLoggedIn = props.isLoggedIn;
+//     if(isLoggedIn){
+//         return <UserGreeting />
+//     }else{
+//         return <GuestGreeting />
+//     }
+// }
+
+// function LoginButton(props){
+//     return (
+//         <button onClick={props.onClick}>
+//             Login
+//         </button>
+//     )
+// }
+
+// function LogoutButton(props){
+//     return (
+//         <button onClick={props.onClick}>
+//             Logout
+//         </button>
+//     )
+// }
+
+// class LoginControl extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.handleLoginClick = this.handleLoginClick.bind(this);
+//         this.handleLogoutClick = this.handleLogoutClick.bind(this);
+//         this.state = {isLoggedIn:false};
+//     }
+//     handleLoginClick(){
+//         this.setState({
+//             isLoggedIn:true
+//         })
+//     }
+//     handleLogoutClick(){
+//         this.setState({
+//             isLoggedIn:false
+//         })
+//     }
+//     render(){
+//         const isLoggedIn = this.state.isLoggedIn;
+//         let button = null;
+//         if(isLoggedIn){
+//             button = <LoginButton onClick={this.handleLogoutClick} />
+//         }else{
+//             button = <LogoutButton onClick={this.handleLoginClick} />
+//         }
+
+//         return(
+//             <div class="box">
+//                 <Greeting isLoggedIn={isLoggedIn} />
+//                 {button}
+//             </div>
+//         )
+//     }
+// }
+
+// ReactDOM.render(
+//     <LoginControl />,
+//     document.getElementById('root')
+// )
+
+
+// function Mailbox(props){
+//     const unreadMessage = props.unreadMessage;
+//     return(
+//         <div>
+//             <h1>hello</h1>
+//             {unreadMessage.length>0&&
+//                 <h2>you have {unreadMessage.length} unread message</h2>
+//             }
+//         </div>
+//     )
+// }
+
+// const message = ['react','reactdom','redux'];
+// ReactDOM.render(
+//     <Mailbox unreadMessage={message} />,
+//     document.getElementById('root')
+// )
+class Btn extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    render(){
+        return(
+            <button>change</button>
+        )
+    }
+}
+
+class Test extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {test:false};
+        this.changetext = this.changetext.bind(this);
+    }
+    changetext(){
+        console.log(111)
+        this.setState({test:true});
+    }
+    render(){
+        const test = this.state.test;
+        return(
+            <div className="test">
+                {test?(<h2>test is true</h2>):(<h2>test is false</h2>)}
+                <Btn onClick={this.changetext} />
+            </div>
+        )
+    }
+}
+ReactDOM.render(
+    <Test />,document.getElementById('root')
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 registerServiceWorker();
