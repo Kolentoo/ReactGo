@@ -261,45 +261,135 @@ const user = {
 //     <Mailbox unreadMessage={message} />,
 //     document.getElementById('root')
 // )
-class Btn extends React.Component{
-    constructor(props){
-        super(props);
-    }
-    render(){
-        return(
-            <button>change</button>
-        )
-    }
+
+// class Btn extends React.Component{
+//     constructor(props){
+//         super(props);
+//     }
+//     render(){
+//         return(
+//             <button>change</button>
+//         )
+//     }
+// }
+
+// class Test extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state = {test:false};
+//         this.changetext = this.changetext.bind(this);
+//     }
+//     changetext(){
+//         console.log(111)
+//         this.setState({test:true});
+//     }
+//     render(){
+//         const test = this.state.test;
+//         return(
+//             <div className="test">
+//                 {test?(<h2>test is true</h2>):(<h2>test is false</h2>)}
+//                 <Btn onClick={this.changetext} />
+//             </div>
+//         )
+//     }
+// }
+
+// ReactDOM.render(
+//     <Test />,document.getElementById('root')
+// )
+
+// function WarningBanner(props){
+//     if(props.warn){
+//         return null
+//     }
+//     return (
+//         <div className="warning">Warning!!!</div>
+//     )
+// }
+
+// class Page extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state = {showWarning:true};
+//         this.handleToggleClick = this.handleToggleClick.bind(this);
+//     }
+//     handleToggleClick(){
+//         this.setState(prevState=>({
+//             showWarning:!prevState.showWarning
+//         }))
+//     }
+//     render(){
+//         return(
+//             <div>
+//                 <WarningBanner warn={this.state.showWarning} />
+//                 <button onClick={this.handleToggleClick}>
+//                     {this.state.showWarning?'warning的值为true':'warning的值为false'}
+//                 </button>
+//             </div>
+//         )
+//     }
+// }
+
+// ReactDOM.render(
+//     <Page />,
+//     document.getElementById('root')
+// )
+
+// const numbers = [1,2,3,4,5];
+// const listItems = numbers.map((current,index,arr)=>{
+//     return (
+//         <li>{current*2}</li>
+//     )
+// })
+
+// ReactDOM.render(
+//     <ul>{listItems}</ul>,document.getElementById('root')
+// )
+
+// function NumberList(props){
+//     const numbers = props.numbers;
+//     const listItems = numbers.map((current,index,arr)=>{
+//         return <li key={current}>{current*2}</li>
+//     })
+//     return (
+//         <ul className="hellos">{listItems}</ul>
+//     )
+// }
+
+// const numbers = [1,2,3,4,5];
+// ReactDOM.render(
+//     <NumberList numbers={numbers} />,
+//     document.getElementById('root')
+// )
+
+const posts = [
+    {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+    {id: 2, title: 'Installation', content: 'You can install React from npm.'}
+  ];
+
+function Blog(props){
+    const sidebar=(
+        <ul>
+            {props.posts.map(post=>
+                <li key={post.id}>{post.title}</li>
+            )}
+        </ul>
+    )
+    const content = props.posts.map((post)=>
+        <div key={post.id}>
+            <h3>{post.title}</h3>
+            <p>{post.content}</p>
+        </div>
+    )
+    return(
+        <div>{sidebar}{content}</div>
+    )
 }
 
-class Test extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {test:false};
-        this.changetext = this.changetext.bind(this);
-    }
-    changetext(){
-        console.log(111)
-        this.setState({test:true});
-    }
-    render(){
-        const test = this.state.test;
-        return(
-            <div className="test">
-                {test?(<h2>test is true</h2>):(<h2>test is false</h2>)}
-                <Btn onClick={this.changetext} />
-            </div>
-        )
-    }
-}
 ReactDOM.render(
-    <Test />,document.getElementById('root')
+    <Blog posts={posts} />,
+    document.getElementById('root')
 )
-
-
-
-
-
 
 
 
