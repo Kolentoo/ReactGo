@@ -362,33 +362,178 @@ const user = {
 //     document.getElementById('root')
 // )
 
-const posts = [
-    {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
-    {id: 2, title: 'Installation', content: 'You can install React from npm.'}
-  ];
+// const posts = [
+//     {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
+//     {id: 2, title: 'Installation', content: 'You can install React from npm.'}
+//   ];
 
-function Blog(props){
-    const sidebar=(
-        <ul>
-            {props.posts.map(post=>
-                <li key={post.id}>{post.title}</li>
-            )}
-        </ul>
-    )
-    const content = props.posts.map((post)=>
-        <div key={post.id}>
-            <h3>{post.title}</h3>
-            <p>{post.content}</p>
-        </div>
-    )
-    return(
-        <div>{sidebar}{content}</div>
-    )
+// function Blog(props){
+//     const sidebar=(
+//         <ul>
+//             {props.posts.map(post=>
+//                 <li key={post.id}>{post.title}</li>
+//             )}
+//         </ul>
+//     )
+//     const content = props.posts.map((post)=>
+//         <div key={post.id}>
+//             <h3>{post.title}</h3>
+//             <p>{post.content}</p>
+//         </div>
+//     )
+//     return(
+//         <div>{sidebar}{content}</div>
+//     )
+// }
+
+// ReactDOM.render(
+//     <Blog posts={posts} />,
+//     document.getElementById('root')
+// )
+
+// class NameForm extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state={value:''};
+//         this.handleChange = this.handleChange.bind(this);
+//         this.handleSubmit = this.handleSubmit.bind(this);
+//     }
+//     handleChange(event){
+//         this.setState({
+//             value:event.target.value.toUpperCase()
+//         })
+//         console.log(event.target.value)
+//     }
+//     handleSubmit(event){
+//         alert('name：'+this.state.value);
+//         event.preventDefault();
+//     }
+//     render(){
+//         return(
+//             <form action="">
+//                 <label htmlFor="">
+//                     Name:
+//                     <input type="text" value={this.state.value} onChange={this.handleChange}/>
+//                 </label>
+//                 <input type="button" value="Submit" onClick={this.handleSubmit}/>
+//             </form>
+//         )
+//     }
+// }
+
+// ReactDOM.render(
+//     <NameForm />,document.getElementById('root')
+// )
+
+// class EssayForm extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state={
+//             value:'please write an essay'
+//         }
+//         this.handleChange=this.handleChange.bind(this);
+//         this.handleSubmit = this.handleSubmit.bind(this)
+//     }
+//     handleChange(event){
+//         this.setState({value:event.target.value})
+//     }
+//     handleSubmit(event){
+//         alert('essay:'+this.state.value);
+//         event.preventDefault();
+//     }
+//     render(){
+//         return(
+//             <form onSubmit={this.handleSubmit}>
+//                 <label htmlFor="">
+//                     Name:
+//                     <textarea value={this.state.value} onChange={this.handleChange} />
+//                 </label>
+//                 <input type="submit" value="Submit"/>
+//             </form>
+//         )
+//     }
+// }
+
+// ReactDOM.render(
+//     <EssayForm />,document.getElementById('root')
+// )
+
+// class FlavorForm extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state={value:'coconut'};
+//         this.handleChange=this.handleChange.bind(this);
+//         this.handleSubmit = this.handleSubmit.bind(this);
+//     }
+//     handleChange(event){
+//         this.setState({value:event.target.value})
+//     }
+//     handleSubmit(event){
+//         alert('choice:'+this.state.value);
+//         event.preventDefault();
+//     }
+//     render(){
+//         return(
+//             <form action="" onSubmit={this.handleSubmit}>
+//                 <label htmlFor="">
+//                     pick your item
+//                     <select value={this.state.value} onChange={this.handleChange}>
+//                         <option value="grapefruit">grapefruit</option>
+//                         <option value="lime">lime</option>
+//                         <option value="coconut">coconut</option>
+//                         <option value="mango">mango</option>
+//                     </select>
+//                 </label>
+//                 <input type="submit" value="Submit"/>
+//             </form>
+//         )
+//     }
+// }
+
+// ReactDOM.render(
+//     <FlavorForm />,document.getElementById('root')
+// )
+
+class Reservation extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            isGoing:true,
+            numberOfGuests:200
+        }
+        this.handleInputChange=this.handleInputChange.bind(this);
+    }
+    handleInputChange(event){
+        const target = event.target;
+        const value = target.type==='checkbox'?target.checked:target.value;
+        const name = target.name;
+        this.setState({
+            [name]:value //es6语法
+        })
+    }
+    render(){
+        return(
+            <form action="">
+                <label htmlFor="">
+                    is isGoing
+                    <input type="text" name="isGoing" type="checkbox" 
+                    checked={this.state.isGoing} onChange={this.handleInputChnage}/>
+                </label>
+                <br/>
+                <label htmlFor="">
+                    number of guests:
+                    <input type="text" name="numberOfGuests" type="number" 
+                    value={this.state.numberOfGuests} onChange={this.handleInputChange}/>
+                </label>
+            
+            </form>
+        )
+    }
+    
 }
 
 ReactDOM.render(
-    <Blog posts={posts} />,
-    document.getElementById('root')
+    <Reservation />,document.getElementById('root')
 )
 
 
