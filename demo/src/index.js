@@ -494,50 +494,163 @@ const user = {
 //     <FlavorForm />,document.getElementById('root')
 // )
 
-class Reservation extends React.Component{
+// class Reservation extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.state={
+//             isGoing:true,
+//             numberOfGuests:200
+//         }
+//         this.handleInputChange=this.handleInputChange.bind(this);
+//     }
+//     handleInputChange(event){
+//         const target = event.target;
+//         const value = target.type==='checkbox'?target.checked:target.value;
+//         const name = target.name;
+//         this.setState({
+//             [name]:value //es6语法
+//         })
+//     }
+//     render(){
+//         return(
+//             <form action="">
+//                 <label htmlFor="">
+//                     is isGoing
+//                     <input type="text" name="isGoing" type="checkbox" 
+//                     checked={this.state.isGoing} onChange={this.handleInputChnage}/>
+//                 </label>
+//                 <br/>
+//                 <label htmlFor="">
+//                     number of guests:
+//                     <input type="text" name="numberOfGuests" type="number" 
+//                     value={this.state.numberOfGuests} onChange={this.handleInputChange}/>
+//                 </label>
+            
+//             </form>
+//         )
+//     }
+    
+// }
+
+// ReactDOM.render(
+//     <Reservation />,document.getElementById('root')
+// )
+
+function BoilingVerdict(props) {
+    if (props.celsius >= 100) {
+      return <p>水会烧开</p>;
+    }
+    return <p>水不会烧开</p>;
+}
+
+// class Calculator extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.handleChange=this.handleChange.bind(this);
+//         this.state={temperature:''};
+//     }
+//     handleChange(e){
+//         this.setState({temperature:e.target.value})
+//     }
+//     render(){
+//         const temperature = this.state.temperature;
+//         return(
+//             <fieldset>
+//                 <legend>输入一个摄氏温度</legend>
+//                 <input type="text" value={temperature}
+//                 onChange={this.handleChange}/>
+//                 <BoilingVerdict celsius={parseFloat(temperature)} />
+//             </fieldset>
+//         )
+//     }
+// }
+
+const scaleNames={
+    c:'Celsius',
+    f:'Fahrenheit'
+}
+
+// class TemperatureInput extends React.Component{
+//     constructor(props){
+//         super(props);
+//         this.handleChange=this.handleChange.bind(this);
+//         this.state={temperature:''}
+//     }
+//     handleChange(e){
+//         this.setState({temperature:e.target.value});
+//     }
+//     render(){
+//         const temperature = this.state.temperature;
+//         const scale = this.props.scale;
+//         return (
+//             <fieldset>
+//                 <legend>enter temperature in {scaleNames[scale]}:</legend>
+//                 <input type="text" value={temperature} onChange={this.handleChange}/>
+//             </fieldset>
+//         )
+//     }
+// }
+
+class Calculator extends React.Component{
+    render(){
+        return(
+            <div>
+                <TemperatureInput scale="c" />
+                <TemperatureInput scale="f" />
+            </div>
+        )
+    }
+}
+
+function toCelsius(fahrenheit){
+    return (fahrenheit-32)*5/9;
+}
+function toFahrenheit(celsius){
+    return (celsius*9/5)+32;
+}
+
+//第一个参数是输入的温度值 this.state.temperature
+//第二个参数是温度转换的方法
+function tryConvert(temperature,convert){
+    const input = parseFloat(temperature);
+    //如果是非数字，返回空
+    if(Number.isNaN(input)){
+        return ''
+    }
+    // convert()方法代表以上2个转换函数
+    const output = convert(input);
+    const rounded = Math.round(output*1000)/1000;
+    return rounded.toString();
+}
+
+
+class TemperatureInput extends React.Component{
     constructor(props){
         super(props);
-        this.state={
-            isGoing:true,
-            numberOfGuests:200
-        }
-        this.handleInputChange=this.handleInputChange.bind(this);
+        this.handleChange=this.handleChange.bind(this);
+        this.state={temperature:''}
     }
-    handleInputChange(event){
-        const target = event.target;
-        const value = target.type==='checkbox'?target.checked:target.value;
-        const name = target.name;
+    handleChange(e){
         this.setState({
-            [name]:value //es6语法
+            temperature:e.target.value
         })
     }
     render(){
-        return(
-            <form action="">
-                <label htmlFor="">
-                    is isGoing
-                    <input type="text" name="isGoing" type="checkbox" 
-                    checked={this.state.isGoing} onChange={this.handleInputChnage}/>
-                </label>
-                <br/>
-                <label htmlFor="">
-                    number of guests:
-                    <input type="text" name="numberOfGuests" type="number" 
-                    value={this.state.numberOfGuests} onChange={this.handleInputChange}/>
-                </label>
-            
-            </form>
+        const temperature = this.state.temperature;
+        const scale = this.props.scale;
+        return (
+            <fieldset>
+                <legend>enter temperature in {scaleNames[scale]}:</legend>
+                <input type="text" value={temperature} onChange={this.handleChange}/>
+            </fieldset>
         )
     }
-    
 }
 
+
 ReactDOM.render(
-    <Reservation />,document.getElementById('root')
+    <Calculator />,document.getElementById('root')
 )
-
-
-
 
 
 
